@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoApp | Home</title>
+    <link rel="stylesheet" type="text/css" href="files/css/bootstrap.css">  
+    <link rel="stylesheet" type="text/css" href="files/fonts/css/font-awesome.css">
+    <script type="text/javascript" src="files/js/jquery.js"></script>
+    <script type="text/javascript" src="files/js/bootstrap.js"></script> 
+
+    <script type="text/javascript" src="files/js/vue.js"></script> 
+
+    <style>
+  @font-face {
+  font-family: 'EuclidBold';
+  src:   url("files/fontfs/EuclidCircularABold.woff") format("woff2");
+  }  
+  @font-face {
+  font-family: 'Roboto';
+  src:   url("files/fontfs/Roboto-Light.ttf") format("truetype");
+  }
+  @font-face {
+  font-family: 'RobotoBold';
+  src:   url("files/fontfs/Roboto-Bold.ttf") format("truetype");
+  } 
+  body{
+    font-family:"Roboto";
+  } 
+  .title{
+    font-family: 'EuclidBold';
+  }
+  ul, ol {
+    list-style-type: none;
+  }
+  .list-group{
+    height:300px; 
+    max-height:300px;
+    overflow-y: scroll; 
+    padding:1px 0px 5px 0px;
+  }
+  .form-control, .btn {
+     box-shadow: none !important;
+  }
+  input:focus{
+    border:1px solid #3d956e !important;
+  }
+  </style>
+</head>
+<body> 
+  
+  <div class="container-fluid bx-content-all mt-5 col-lg-4">
+    <div id="app">   
+      <h3 class="diplay-4 font-weight-bold title">TodoApp</h3>
+      <p class="">Just a simple todo app made with vue js and django</p>
+      <hr>
+      <div class="task-list list-group"> 
+    
+       <span  v-for="(task, index) in taskList.items">
+       <a href="#" @click="OpenTask" :item-id="`tItem-${index}`" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center my-1">
+       <span class="item-text title">{{ task }}</span> 
+       <span class="badge badge-success badge-pill py-2 px-3" @click="(event) => DeleteTask(index, event)" :id="`tItem-${index}`"><i class="fa fa-remove"></i></span> 
+       </a> 
+     </span>
+   
+   
+   
+      </div>
+      <hr>
+      <div class="form-group">
+         <h5 class="display-5 title">Add a new Task</h5>
+         <input type="text" name="" id="" v-model="taskTitle" :onkeydown="UpdateBtn" class="form-control" placeholder="Task Title..."> 
+         <button href="#" class="badge-pill btn btn-success btn-sm px-3 py-2 my-2" @click="AddTask" :disabled="formFilled">Save Task</button>
+      </div>
+   
+    </div> 
+   </div>  
+<script type="text/javascript"> 
+  const { createApp } = Vue;
+
+  const app = createApp({
+     data(){
+        return{
+            formFilled:true,
+            taskTitle: "",
+            taskList: localStorage.getItem("tasks") == undefined ? {items:[]} : JSON.parse(localStorage.getItem("tasks"))
+        }
+     },
+     methods:{
+       AddTask(){
+        if(this.taskList.items.indexOf(this.taskTitle) == -1){
+         this.taskList.items.push(this.taskTitle);
+         localStorage.setItem("tasks", JSON.stringify(this.taskList));
+        }
+        this.taskTitle = "";
+        this.UpdateBtn();
+       },
+       UpdateBtn(e){
+         if(this.taskTitle.length > 3){
+            if(e.key == "Enter"){
+              this.AddTask();
+              this.UpdateBtn();
+            }
+            this.formFilled = false;
+         }else{
+            this.formFilled = true;
+         }
+       },
+       OpenTask(e){
+        
+       },
+       DeleteTask(item, e){
+        this.taskList.items.splice(item, 1);
+        localStorage.setItem("tasks", JSON.stringify(this.taskList));
+       }
+     }
+  }).mount("#app");
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+body{
+  background-color:#000000f6;
+  color:#ffffff;
+  font-family:'Roboto', sans-serif; 
+}
+a{
+    text-decoration: none;
+    color:inherit;
+}
+   @font-face {
+    font-family: 'EuclidBold';
+    src:   url("../fontfs/EuclidCircularABold.woff") format("woff2");
+    }   
+    @font-face {
+        font-family: 'RobotoBold';
+        src:   url("../fontfs/Roboto-Regular.ttf") format("truetype");
+        }  
+        @font-face {
+        font-family: 'Roboto';
+        src:   url("../fontfs/Roboto-Light.ttf") format("truetype");
+        } 
+    
+    #app{ 
+        padding:15px 0px 100px 0px;
+        width:100%;
+        display: flex;
+        align-items:stretch; 
+        justify-content: end;  
+        
+    }
+     .navbar{
+        padding:5px;
+        background-color:#0e0e0f;
+     }
+    .navbar-brand{
+        font-family: sans-serif;
+        font-size:20px;
+    }
+    .nav-item{
+      margin:0px 10px 0px 10px;  
+      font-size:16px;
+      color:#efeded;
+      font-family: "RobotoBold" !important;
+    }
+    .nav-item:hover a{
+        color: #fff;
+    }
+    .nav-item:not(.active){
+       color:#aba8a8 !important; 
+    }
+    .nav-btn{
+        border:none;
+        background-color: #0071e3;
+        border-radius:18px;
+    }
+    .prod-title{
+        font-family: 'EuclidBold';
+    }
+    .prod-title-sm{
+       font-family: "RobotoBold";
+       font-size:16px;
+    }
+    .prod-desc{
+      line-height: 1.8em;
+      font-family: "Roboto";
+      font-size:17px;
+    }
+    .lil-text{
+        color: #aba8a8;
+        line-height: 1.8em;
+    }
+    #app .img-banner, #app .prod-info-banner {  
+        align-items: center;
+    }
+    #app .img-banner{
+        width:25%;     
+    }  
+    #app .prod-info-banner{
+       width:50%; 
+       padding:145px 30px 50px 10px;  
+    }  
+    #app .img-banner img{
+        max-width:250px;
+        height:auto; 
+    }
+    #app .img-banner{
+        margin-left: 100px;}
+/*Set the box-reflect property */
+
+  /*Set the box-reflect property */
+  #app .img-banner{ 
+    -webkit-box-reflect:left 1px linear-gradient(to left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.249)) !important; 
+  }
